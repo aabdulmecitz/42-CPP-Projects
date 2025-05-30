@@ -1,5 +1,4 @@
 #include "PhoneBook.hpp"
-#include <sstream>
 
 void PhoneBook::add()
 {
@@ -38,7 +37,8 @@ void PhoneBook::add()
 
 void PhoneBook::exit()
 {
-
+    std::cout << "Exiting PhoneBook. Goodbye!" << std::endl;
+    std::exit(0);
 }
 
 static std::string put_cell(std::string str)
@@ -62,17 +62,20 @@ void PhoneBook::search()
            input == this->contact[i].phonenum || 
            input == this->contact[i].darkest_scret)
         {
+            std::cout << "Found Contact: " << std::endl;
+            std::cout << "|" << std::setw(10) << "Index"
+                    << "|" << std::setw(10) << "First Name"
+                    << "|" << std::setw(10) << "Last Name"
+                    << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
             std::stringstream ss;
             ss << i;
             std::string str = ss.str();
-            std::cout << "Found Contact: " << std::endl;
-            std::cout << "|" << put_cell(str);
-            std::cout << "|" << put_cell(this->contact[i].first_name);
-            std::cout << "|" << put_cell(this->contact[i].last_name);
-            std::cout << "|" << put_cell(this->contact[i].nickname) << "|" << std::endl; 
+            std::cout << "|" << std::setw(10) << put_cell(str);
+            std::cout << "|" << std::setw(10) << put_cell(this->contact[i].first_name);
+            std::cout << "|" << std::setw(10) << put_cell(this->contact[i].last_name);
+            std::cout << "|" << std::setw(10) << put_cell(this->contact[i].nickname) << "|" << std::endl; 
             return;
         }
     }
-    
     
 }

@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "Contact.hpp"
+#include <iomanip>
+#include <cstdlib>
+
 
 class PhoneBook{
     public:
