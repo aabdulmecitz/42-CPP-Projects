@@ -19,10 +19,8 @@ int main()
             phoneBook.search();
         else if (cmd == "EXIT")
             phoneBook.exit();
-        if (std::cin.eof())
-        {
-            std::cout << "\nExiting PhoneBook." << std::endl;
-            break;
-        }
+        else
+            std::cout << "Invalid command. Please use ADD, SEARCH, or EXIT." << std::endl;
+
     }
 }

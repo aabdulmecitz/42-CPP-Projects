@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include <sstream>
 
 void PhoneBook::add()
 {
@@ -40,6 +41,13 @@ void PhoneBook::exit()
 
 }
 
+static std::string put_cell(std::string str)
+{
+    if (str.length() > 10)
+        str = str.substr(0, 9) + ".";
+    return str;
+}
+
 void PhoneBook::search()
 {
     std::string input;
@@ -54,12 +62,14 @@ void PhoneBook::search()
            input == this->contact[i].phonenum || 
            input == this->contact[i].darkest_scret)
         {
+            std::stringstream ss;
+            ss << i;
+            std::string str = ss.str();
             std::cout << "Found Contact: " << std::endl;
-            std::cout << "First Name: " << this->contact[i].first_name << std::endl;
-            std::cout << "Last Name: " << this->contact[i].last_name << std::endl;
-            std::cout << "Nickname: " << this->contact[i].nickname << std::endl;
-            std::cout << "Phone Number: " << this->contact[i].phonenum << std::endl;
-            std::cout << "Darkest Screet: " << this->contact[i].darkest_scret << std::endl;
+            std::cout << "|" << put_cell(str);
+            std::cout << "|" << put_cell(this->contact[i].first_name);
+            std::cout << "|" << put_cell(this->contact[i].last_name);
+            std::cout << "|" << put_cell(this->contact[i].nickname) << "|" << std::endl; 
             return;
         }
     }
