@@ -1,7 +1,7 @@
 NAME = account
 TESTS = tests.cpp
 
-SRC = account.cpp
+SRC = Account.cpp
 
 CC = c++
 

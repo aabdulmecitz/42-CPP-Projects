@@ -1,13 +1,19 @@
 #include "Account.hpp"
+#include <iostream>
 
-// int Account::_nbAccounts = 0;
-// int Account::_totalAmount = 0;
-// int Account::_totalNbDeposits = 0;
-// int Account::_totalNbWithdrawals = 0;
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
 
 void Account::displayAccountsInfos( void )
 {
-
+    _displayTimestamp();
+    std::cout << " accounts:" << _nbAccounts
+              << "; total:" << _totalAmount
+              << "; deposits:" << _totalNbDeposits
+              << "; withdrawals:" << _totalNbWithdrawals
+              << std::endl;
 }
 
 int Account::getNbAccounts( void )
@@ -31,6 +37,7 @@ int Account::getNbWithdrawals( void )
 Account::Account( int initial_deposit )
 {
     _nbAccounts++;
+    _accountIndex = _nbAccounts - 1;
     _amount = initial_deposit;
     _nbDeposits = 0;
     _nbWithdrawals = 0;
@@ -55,7 +62,18 @@ void Account::makeDeposit(int deposit)
 
 bool Account::makeWithdrawal(int withdrawal)
 {
-
+    if( withdrawal > _amount)
+    {
+        return false;
+    }
+    else
+    {
+        _totalNbWithdrawals++;
+        _amount -= withdrawal;
+        _nbWithdrawals++;
+        _totalAmount -= withdrawal;
+        return true;
+    }
 }
 
 int		Account::checkAmount( void ) const
@@ -65,5 +83,20 @@ int		Account::checkAmount( void ) const
 
 void	Account::displayStatus( void ) const
 {
+    _displayTimestamp();
+    std::cout << " index:" << _accountIndex
+              << "; amount:" << _amount
+              << "; deposits:" << _nbDeposits
+              << "; withdrawals:" << _nbWithdrawals
+              << std::endl;
+}
 
+void Account::_displayTimestamp( void )
+{
+    time_t now = time(0);
+    struct tm tstruct;
+    char buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S] ", &tstruct);
+    std::cout << buf;
 }
