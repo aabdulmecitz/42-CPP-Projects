@@ -10,9 +10,14 @@ int main()
     while (1)
     {
         std::string cmd;
-        std::cout << "Phonebook> ";
+        std::cout << YELLOW << "Phonebook> " << RESET;
         std::getline(std::cin, cmd);
 
+        if (std::cin.eof())
+        {
+            std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+            return 0;
+        }
         if (cmd == "ADD")
             phoneBook.add();
         else if (cmd == "SEARCH")
@@ -20,7 +25,8 @@ int main()
         else if (cmd == "EXIT")
             phoneBook.exit();
         else
-            std::cout << "Invalid command. Please use ADD, SEARCH, or EXIT." << std::endl;
+            std::cout << RED << "Invalid command. Please use ADD, SEARCH, or EXIT." 
+            << RESET << std::endl;
 
     }
 }

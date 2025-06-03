@@ -4,26 +4,46 @@ void PhoneBook::add()
 {
     std::string firstname, lastname, nickname, phonenum, darkestscreet;
 
-    std::cout << "First Name> ";
+    std::cout << CYAN << "First Name> " << RESET;
     std::getline(std::cin, firstname);
-    
-    std::cout << "Last Name> ";
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
+    std::cout << CYAN << "Last Name> " << RESET;
     std::getline(std::cin, lastname);
-
-    std::cout << "Nickname> ";
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
+    std::cout << CYAN << "Nickname> " << RESET;
     std::getline(std::cin, nickname);
-
-    std::cout << "Phone Number> ";
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
+    std::cout << CYAN << "Phone Number> " << RESET;
     std::getline(std::cin, phonenum);
-
-    std::cout << "Darkest Screet> ";
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
+    std::cout << CYAN << "Darkest Screet> " << RESET;
     std::getline(std::cin, darkestscreet);
-
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
     int index = i%8;
 
     if (firstname.empty() || lastname.empty() || nickname.empty() || phonenum.empty() || darkestscreet.empty())
     {
-        std::cout << "Check Your Enterances" << std::endl;
+        std::cout << RED << "Check Your Enterances" << RESET << std::endl;
         return;
     }
     this->contact[index].first_name = firstname;
@@ -31,13 +51,13 @@ void PhoneBook::add()
     this->contact[index].nickname = nickname;
     this->contact[index].phonenum = phonenum;
     this->contact[index].darkest_scret = darkestscreet;
-    std::cout << "Contact Added Successfully!" << std::endl;
+    std::cout << GREEN << "Contact Added Successfully!" << RESET << std::endl;
     i++;
 }
 
 void PhoneBook::exit()
 {
-    std::cout << "Exiting PhoneBook. Goodbye!" << std::endl;
+    std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
     std::exit(0);
 }
 
@@ -51,22 +71,19 @@ static std::string put_cell(std::string str)
 void PhoneBook::search()
 {
     std::string input;
-
-    std::cout << "Search> ";
-    std::getline(std::cin, input);
-    for (int i = 0; i < 8; i++)
+    if (this->i == 0)
     {
-        if(input == this->contact[i].first_name || 
-           input == this->contact[i].last_name || 
-           input == this->contact[i].nickname || 
-           input == this->contact[i].phonenum || 
-           input == this->contact[i].darkest_scret)
-        {
-            std::cout << "Found Contact: " << std::endl;
-            std::cout << "|" << std::setw(10) << "Index"
+        std::cout << RED << "No contacts available. Please add a contact first." << RESET << std::endl;
+        return;
+    }
+    int index = this->i > 8 ? 8 : this->i;
+    std::cout << CYAN << "Contacts: " << RESET << std::endl;
+    std::cout << GREEN << "|" << std::setw(10) << "Index"
                     << "|" << std::setw(10) << "First Name"
                     << "|" << std::setw(10) << "Last Name"
-                    << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+                    << "|" << std::setw(10) << "Nickname" << "|" << RESET << std::endl;
+    for (int i = 0; i < index; i++)
+    {
             std::stringstream ss;
             ss << i;
             std::string str = ss.str();
@@ -74,8 +91,33 @@ void PhoneBook::search()
             std::cout << "|" << std::setw(10) << put_cell(this->contact[i].first_name);
             std::cout << "|" << std::setw(10) << put_cell(this->contact[i].last_name);
             std::cout << "|" << std::setw(10) << put_cell(this->contact[i].nickname) << "|" << std::endl; 
-            return;
-        }
+    }
+    std::cout << CYAN << "Search> " << RESET;
+    std::getline(std::cin, input);
+    if (std::cin.eof())
+    {
+        std::cout << RED << "Exiting PhoneBook. Goodbye!" << RESET << std::endl;
+        std::exit(0);
+    }
+    int selectedIndex;
+    std::stringstream ss(input);
+    ss >> selectedIndex;
+    if (input.empty() || !isdigit(input[0]) || ss.fail() || selectedIndex < 0 || selectedIndex >= index)
+    {
+        std::cout << RED << "Invalid index. Please enter a valid index." << RESET << std::endl;
+        return;
+    }
+    else
+    {
+        std::cout << GREEN << "╔════════════════════════════════════════════╗" << RESET << std::endl;
+        std::cout << GREEN << "║           Contact Information              ║" << RESET << std::endl;
+        std::cout << GREEN << "╠════════════════════════════════════════════╣" << RESET << std::endl;
+        std::cout << CYAN  << "║ First Name     : " << RESET << std::setw(26) << std::left << this->contact[selectedIndex].first_name << GREEN << "║" << RESET << std::endl;
+        std::cout << CYAN  << "║ Last Name      : " << RESET << std::setw(26) << std::left << this->contact[selectedIndex].last_name << GREEN << "║" << RESET << std::endl;
+        std::cout << CYAN  << "║ Nickname       : " << RESET << std::setw(26) << std::left << this->contact[selectedIndex].nickname << GREEN << "║" << RESET << std::endl;
+        std::cout << CYAN  << "║ Phone Number   : " << RESET << std::setw(26) << std::left << this->contact[selectedIndex].phonenum << GREEN << "║" << RESET << std::endl;
+        std::cout << CYAN  << "║ Darkest Secret : " << RESET << std::setw(26) << std::left << this->contact[selectedIndex].darkest_scret << GREEN << "║" << RESET << std::endl;
+        std::cout << GREEN << "╚════════════════════════════════════════════╝" << RESET << std::endl;
     }
     
 }
