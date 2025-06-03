@@ -15,10 +15,14 @@
 #define RESET "\033[0m"
 
 class PhoneBook{
-    public:
+    private:
         Contact contact[8];
         int i;
-    void add();
-    void search();
-    void exit();
+    public:
+        void add();
+        void search();
+        void exit();
+
+        int getIndex();
+        void setIndex(int index);
 };

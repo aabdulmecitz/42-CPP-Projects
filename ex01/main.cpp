@@ -6,7 +6,7 @@ int main()
 {
     PhoneBook phoneBook;
 
-    phoneBook.i = 0;
+    phoneBook.setIndex(0);
     while (1)
     {
         std::string cmd;
