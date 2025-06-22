@@ -1,5 +1,7 @@
 # C++ Modules
 
+![Coding GIF](https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif)
+
 This repository contains a series of C++ modules, each focusing on different aspects of the language, from the very basics to more advanced concepts. These exercises are part of the 42 school curriculum.
 
 ## Cpp00: A-maze-ing
