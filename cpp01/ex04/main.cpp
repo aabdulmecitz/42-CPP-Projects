@@ -59,12 +59,16 @@ void replace_in_file(const std::string& filename, const std::string& s1, const s
 
     std::string line;
     while (std::getline(inputFile, line)) {
+        std::string result;
         size_t pos = 0;
-        while ((pos = line.find(s1, pos)) != std::string::npos) {
-            line.replace(pos, s1.length(), s2);
-            pos += s2.length();
+        size_t prev = 0;
+        while ((pos = line.find(s1, prev)) != std::string::npos) {
+            result.append(line, prev, pos - prev);
+            result += s2;
+            prev = pos + s1.length();
         }
-        outputFile << line;
+        result.append(line, prev, std::string::npos);
+        outputFile << result;
         if (!inputFile.eof()) {
             outputFile << std::endl;
         }
