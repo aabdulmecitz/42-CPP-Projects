@@ -1,6 +1,8 @@
 # C++ Modules
 
-![Coding GIF](https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif)
+<p align="center">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3N0Y2NkZWw5bjF5ZTZxeTJ4YTBiaGJtaHVmbGlmd2didnpyMWwzeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qqDVCetD9mhYLyoies/giphy.gif" alt="Coding GIF"/>
+</p>
 
 This repository contains a series of C++ modules, each focusing on different aspects of the language, from the very basics to more advanced concepts. These exercises are part of the 42 school curriculum.
 
