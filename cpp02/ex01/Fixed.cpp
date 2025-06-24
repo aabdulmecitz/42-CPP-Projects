@@ -31,3 +31,29 @@ Fixed &Fixed::operator=(const Fixed &other) {
     return *this;
 }
 
+Fixed::Fixed(int const value) {
+    // std::cout << "Int constructor called" << std::endl;
+    // _rawBits = value << _fractionalBits; // Shift left to convert to fixed-point representation
+    return;
+}
+
+Fixed::Fixed(float const value) {
+    // std::cout << "Float constructor called" << std::endl;
+    // _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
+    return;
+}
+
+float Fixed::toFloat(void) const {
+    //return static_cast<float>(_rawBits) / (1 << _fractionalBits);
+    return 0; 
+}
+
+int Fixed::toInt(void) const {
+    //return _rawBits >> _fractionalBits;
+    return 0;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
+    os << obj.toFloat();
+    return os;
+}

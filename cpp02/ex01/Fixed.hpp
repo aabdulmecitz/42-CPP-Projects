@@ -22,7 +22,7 @@ public:
     float toFloat(void) const;
     int toInt(void) const;
 
-    Fixed& operator<<(const Fixed& other) const;
+    friend std::ostream& operator<<(std::ostream& os, const Fixed& obj);
 };
 
 #endif
