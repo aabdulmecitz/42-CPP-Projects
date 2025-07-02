@@ -32,25 +32,25 @@ Fixed &Fixed::operator=(const Fixed &other) {
 }
 
 Fixed::Fixed(int const value) {
-    // std::cout << "Int constructor called" << std::endl;
-    // _rawBits = value << _fractionalBits; // Shift left to convert to fixed-point representation
+        std::cout << "Copy constructor called" << std::endl;
+
+    std::cout << "Int constructor called" << std::endl;
+    _rawBits = value << _fractionalBits;
     return;
 }
 
 Fixed::Fixed(float const value) {
-    // std::cout << "Float constructor called" << std::endl;
-    // _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
+    std::cout << "Float constructor called" << std::endl;
+    _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
     return;
 }
 
 float Fixed::toFloat(void) const {
-    //return static_cast<float>(_rawBits) / (1 << _fractionalBits);
-    return 0; 
+    return static_cast<float>(_rawBits) / (1 << _fractionalBits);
 }
 
 int Fixed::toInt(void) const {
-    //return _rawBits >> _fractionalBits;
-    return 0;
+    return _rawBits >> _fractionalBits;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
