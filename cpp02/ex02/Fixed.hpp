@@ -42,8 +42,8 @@ public:
     //Min and max functions
     Fixed& min(Fixed &a, Fixed &b);
     const Fixed& min(const Fixed &a, const Fixed &b);
-    Fixed& max(Fixed &a, Fixed &b);
-    const Fixed& max(const Fixed &a, const Fixed &b);
+    static Fixed& max(Fixed& a, Fixed& b);
+    static const Fixed& max(const Fixed& a, const Fixed& b);
 
     //Conversion functions
     // Getters and setters
