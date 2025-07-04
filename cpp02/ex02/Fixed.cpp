@@ -18,6 +18,31 @@ Fixed::Fixed(const Fixed& other)
     _rawBits = other._rawBits;
 }
 
+Fixed::~Fixed(void)
+{
+    std::cout << "Destructor called" << std::endl;
+}
+
+// Assignment operator overload
+Fixed &Fixed::operator=(const Fixed &other) {
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &other) {
+        _rawBits = other._rawBits;
+    }
+    return *this;
+}
+
+// Comparison operators overload
+
+
+
+// Arithmetic operators overload
+
+
+// Pre-increment and post-increment operators overload
+
+
+
 Fixed::Fixed(int const value) {
     std::cout << "Int constructor called" << std::endl;
     _rawBits = value << _fractionalBits;
@@ -29,21 +54,6 @@ Fixed::Fixed(float const value) {
     _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
     return;
 }
-
-Fixed::~Fixed(void)
-{
-    std::cout << "Destructor called" << std::endl;
-}
-
-Fixed &Fixed::operator=(const Fixed &other) {
-    std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &other) {
-        _rawBits = other._rawBits;
-    }
-    return *this;
-}
-
-
 
 float Fixed::toFloat(void) const {
     return static_cast<float>(_rawBits) / (1 << _fractionalBits);
