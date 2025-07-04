@@ -12,10 +12,25 @@ Fixed::Fixed(void)
     _rawBits = 0;
 }
 
+//Constructors and Destructor
+
 Fixed::Fixed(const Fixed& other)
 {
     //std::cout << "Copy constructor called" << std::endl;
     _rawBits = other._rawBits;
+}
+
+
+Fixed::Fixed(int const value) {
+    //std::cout << "Int constructor called" << std::endl;
+    _rawBits = value << _fractionalBits;
+    return;
+}
+
+Fixed::Fixed(float const value) {
+    //std::cout << "Float constructor called" << std::endl;
+    _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
+    return;
 }
 
 Fixed::~Fixed(void)
@@ -150,17 +165,7 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
         return b;
 }
 
-Fixed::Fixed(int const value) {
-    std::cout << "Int constructor called" << std::endl;
-    _rawBits = value << _fractionalBits;
-    return;
-}
-
-Fixed::Fixed(float const value) {
-    std::cout << "Float constructor called" << std::endl;
-    _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
-    return;
-}
+//some functions
 
 float Fixed::toFloat(void) const {
     return static_cast<float>(_rawBits) / (1 << _fractionalBits);
