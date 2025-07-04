@@ -39,7 +39,7 @@ int main()
     // Beklenen: 0 (Nokta üçgenin dışındadır)
 
     // CASE 5: Nokta üçgenin içinde ama çok yakın kenara
-    Point P5(1.999, 0.001);
+    Point P5(1.999f, 0.001f);
     std::cout << MAGENTA << "CASE 5: " << RESET << bsp(A, B, C, P5) << std::endl;
     // Beklenen: 1 (Nokta içtedir)
 
