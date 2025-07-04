@@ -2,13 +2,11 @@
 #include <iostream>
 
 int Fixed::getRawBits(void) const {
-    //std::cout << "getRawBits member function called" << std::endl;
     return this->_rawBits;
 }
 
 Fixed::Fixed(void)
 {
-    //std::cout << "Default constructor called" << std::endl;
     _rawBits = 0;
 }
 
@@ -16,31 +14,26 @@ Fixed::Fixed(void)
 
 Fixed::Fixed(const Fixed& other)
 {
-    //std::cout << "Copy constructor called" << std::endl;
     _rawBits = other._rawBits;
 }
 
 
 Fixed::Fixed(int const value) {
-    //std::cout << "Int constructor called" << std::endl;
     _rawBits = value << _fractionalBits;
     return;
 }
 
 Fixed::Fixed(float const value) {
-    //std::cout << "Float constructor called" << std::endl;
     _rawBits = static_cast<int>(roundf(value * (1 << _fractionalBits))); // Convert float to fixed-point representation
     return;
 }
 
 Fixed::~Fixed(void)
 {
-    //std::cout << "Destructor called" << std::endl;
 }
 
 // Assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other) {
-    //std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other) {
         _rawBits = other._rawBits;
     }

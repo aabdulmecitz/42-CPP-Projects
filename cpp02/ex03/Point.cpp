@@ -33,3 +33,9 @@ const Fixed &Point::get_y() const
 {
     return this->_y;
 }
+
+bool Point::operator==(const Point &other) const
+{
+    return  (this->get_x() == other.get_x()) &&
+            (this->get_y() == other.get_y());
+}

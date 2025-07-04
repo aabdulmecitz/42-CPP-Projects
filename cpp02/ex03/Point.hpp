@@ -17,9 +17,12 @@ public:
     ~Point(void);
     Point(const Point& other);
     Point& operator=(const Point& other);
+    bool operator==(const Point &other) const;
 
     const Fixed &get_x() const;
     const Fixed &get_y() const;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif
