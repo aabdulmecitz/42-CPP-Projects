@@ -135,7 +135,7 @@ Fixed Fixed::operator--(int)
 
 Fixed& Fixed::min(Fixed &a, Fixed &b)
 {
-    if (a < b)
+    if (a.toFloat() < b.toFloat())
         return a;
     else
         return b;
@@ -143,14 +143,14 @@ Fixed& Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
 {
-    if (a < b)
+    if (a.toFloat() < b.toFloat())
         return a;
     else
         return b;
 }
 Fixed& Fixed::max(Fixed& a, Fixed& b)
 {
-    if (a > b)
+    if (a.toFloat() > b.toFloat())
         return a;
     else
         return b;
