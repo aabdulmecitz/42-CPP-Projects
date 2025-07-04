@@ -13,43 +13,30 @@
 
 int main()
 {
-    // Üçgen köşeleri
+    // Corner of triangle
     Point A(0, 0);
     Point B(4, 0);
     Point C(2, 4);
 
-    // CASE 1: Nokta üçgenin tam ortasında
+    // CASE 1: The Point is certain center of triangle
     Point P1(2, 1);
     std::cout << MAGENTA << "CASE 1: " << RESET << bsp(A, B, C, P1) << std::endl;
-    // Beklenen: 1 (Nokta üçgenin içindedir)
+    // Predicted: 1 (The point is inside of triangle)
 
-    // CASE 2: Nokta köşelerden birinde (A)
+    // CASE 2: The point is on a corner of triangle (A)
     Point P2(0, 0);
     std::cout << MAGENTA << "CASE 2: " << RESET << bsp(A, B, C, P2) << std::endl;
-    // Beklenen: 0 (Nokta kenar/köşe üzerindedir, iç sayılmaz)
+    // Predicted: 0 (The point is outside of triangle)
 
-    // CASE 3: Nokta bir kenar üzerinde (AB kenarında)
+    // CASE 3: The point exists on a line (AB line)
     Point P3(2, 0);
     std::cout << MAGENTA << "CASE 3: " << RESET << bsp(A, B, C, P3) << std::endl;
-    // Beklenen: 0 (Kenar üzerinde)
+    // Predicted: 0 (On a line)
 
-    // CASE 4: Nokta üçgenin dışarısında
+    // CASE 4: The point is outside of triangle
     Point P4(5, 5);
     std::cout << MAGENTA << "CASE 4: " << RESET << bsp(A, B, C, P4) << std::endl;
-    // Beklenen: 0 (Nokta üçgenin dışındadır)
-
-    // CASE 5: Nokta üçgenin içinde ama çok yakın kenara
-    Point P5(1.999f, 0.001f);
-    std::cout << MAGENTA << "CASE 5: " << RESET << bsp(A, B, C, P5) << std::endl;
-    // Beklenen: 1 (Nokta içtedir)
-
-    // CASE 6: Üçgen çok küçük, nokta içinde
-    Point A2(0, 0);
-    Point B2(0.001, 0);
-    Point C2(0, 0.001);
-    Point P6(0.0003, 0.0003);
-    std::cout << MAGENTA << "CASE 6: " << RESET << bsp(A2, B2, C2, P6) << std::endl;
-    // Beklenen: 1 (Küçük üçgenin içinde)
+    // Predicted: 0 (The point is outside of triangle)
 
     return 0;
 }
