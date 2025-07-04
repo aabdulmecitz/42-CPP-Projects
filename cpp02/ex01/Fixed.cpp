@@ -32,8 +32,6 @@ Fixed &Fixed::operator=(const Fixed &other) {
 }
 
 Fixed::Fixed(int const value) {
-        std::cout << "Copy constructor called" << std::endl;
-
     std::cout << "Int constructor called" << std::endl;
     _rawBits = value << _fractionalBits;
     return;

@@ -1,5 +1,8 @@
 NAME = fixed
 
+CYAN = \033[1;36m
+RESET = \033[0m
+
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp Fixed.cpp 
@@ -18,4 +21,10 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-.PHONY: all clean re fclean
+run: re
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@rm -rf $(OBJS)
+	@echo "$(CYAN)Result...$(RESET)"
+	@./$(NAME)
+
+.PHONY: all clean re fclean run
