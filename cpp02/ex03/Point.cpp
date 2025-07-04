@@ -1,30 +1,35 @@
 #include "Point.hpp"
 #include <iostream>
 
-int Point::getRawBits(void) const
+Point::Point(): _x(0), _y(0)
 {
-    return this->_rawBits;
 }
 
-Point::Point(void)
+Point::Point(const float x, const float y): _x(x), _y(y)
 {
-    _rawBits = 0;
 }
 
-Point::Point(const Point& other)
+Point::Point(const Point& other): _x(other.get_x()), _y(other.get_y())
 {
-    _rawBits = other._rawBits;
 }
 
 Point::~Point(void)
 {
-
 }
 
 Point &Point::operator=(const Point &other)
 {
-    if (this != &other) {
-        _rawBits = other._rawBits;
-    }
+    if (this == &other)
+		return *this;
     return *this;
+}
+
+const Fixed &Point::get_x() const
+{
+    return this->_x;
+}
+
+const Fixed &Point::get_y() const
+{
+    return this->_y;
 }

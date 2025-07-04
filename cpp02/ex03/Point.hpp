@@ -8,16 +8,18 @@
 class Point {
     
 private:
-    Fixed const x;
-    Fixed const y;
+    Fixed const _x;
+    Fixed const _y;
 
 public:
+    Point();
     Point(const float x, const float y);
     ~Point(void);
     Point(const Point& other);
     Point& operator=(const Point& other);
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
 
+    const Fixed &get_x() const;
+    const Fixed &get_y() const;
 };
+
 #endif
