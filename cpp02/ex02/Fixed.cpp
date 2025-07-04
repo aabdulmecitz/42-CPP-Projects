@@ -83,23 +83,22 @@ bool Fixed::operator>=(const Fixed &other) const
 
 float Fixed::operator+(const Fixed &other) const
 {
-    return this->getRawBits() + other.getRawBits();
+    return this->toFloat() + other.toFloat();
 }
 
 float Fixed::operator-(const Fixed &other) const
 {
-    return this->getRawBits() - other.getRawBits();
+    return this->toFloat() - other.toFloat();
 }
 
 float Fixed::operator*(const Fixed &other) const
 {
-    return this->getRawBits() * other.getRawBits();
+    return this->toFloat() * other.toFloat();
 }
-
 
 float Fixed::operator/(const Fixed &other) const
 {
-    return this->getRawBits() / other.getRawBits();
+    return this->toFloat() / other.toFloat();
 }
 
 // Pre-increment and post-increment operators overload
