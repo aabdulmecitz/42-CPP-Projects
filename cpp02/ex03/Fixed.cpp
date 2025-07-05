@@ -5,6 +5,12 @@ int Fixed::getRawBits(void) const {
     return this->_rawBits;
 }
 
+void Fixed::setRawBits(int const raw)
+{
+    //std::cout << "setRawBits member function called" << std::endl;
+    this->_rawBits = raw << _fractionalBits;
+}
+
 Fixed::Fixed(void)
 {
     _rawBits = 0;
