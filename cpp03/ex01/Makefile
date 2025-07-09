@@ -1,11 +1,11 @@
-NAME = claptrap
+NAME = ScavTrap
 
 CYAN = \033[1;36m
 RESET = \033[0m
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp ClapTrap.cpp
+SRCS = main.cpp ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
