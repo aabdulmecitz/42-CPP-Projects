@@ -2,31 +2,31 @@
 
 ClapTrap::ClapTrap(void)
 {
-    std::cout << "Constructor has called" << std::endl;
+    std::cout << "ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
-    std::cout << "Constructor has called" << std::endl;
+    std::cout << "ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor has called" << std::endl;
+    std::cout << "ClapTrap destructor called" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
 {
     if (get_ep() == 0 || get_hp() == 0)
     {
-        std::cout << "You cannot attack because you don't have any ";
+        std::cout << "ClapTrap " << get_name() << " cannot attack because it has no ";
         if (get_ep() == 0 && get_hp() == 0)
-            std::cout << "Energy Points and Hit Points";
+            std::cout << "energy points and hit points";
         else if (get_ep() == 0)
-            std::cout << "Energy Points";
+            std::cout << "energy points";
         else
-            std::cout << "Hit Points";
-        std::cout << "." << std::endl;
+            std::cout << "hit points";
+        std::cout << "!" << std::endl;
         return;
     }
     
@@ -40,12 +40,12 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (amount >= get_hp())
+    if (amount >= (unsigned int)get_hp())
         this->set_hp(0);
     else
         this->set_hp(get_hp() - amount);
-    std::cout << "ClapTrap " << get_name() <<" takes " 
-    << amount << "> points of damage!" << std::endl;
+    std::cout << "ClapTrap " << get_name() << " takes " 
+    << amount << " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -61,7 +61,7 @@ void ClapTrap::beRepaired(unsigned int amount)
     this->set_hp(get_hp() + amount);
 
     std::cout << "ClapTrap " << get_name() 
-    << "> is repaired for " << amount << "> hit points!"
+    << " is repaired for " << amount << " hit points!"
     << std::endl;
 }
 
