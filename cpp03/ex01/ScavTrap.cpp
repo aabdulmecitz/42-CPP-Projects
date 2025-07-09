@@ -32,9 +32,9 @@ void ScavTrap::attack(const std::string& target)
     
     this->set_ep(get_ep() - 1);
     
-    std::cout << "ScavTrap <" << this->get_name() << 
-    "> attacks <" << target << ">, causing <" <<
-    this->get_attack_d() << "> points of damage!" << 
+    std::cout << "ScavTrap " << this->get_name() << 
+    " attacks " << target << ", causing " <<
+    this->get_attack_d() << " points of damage!" << 
     std::endl;
 }
 
@@ -44,30 +44,30 @@ void ScavTrap::takeDamage(unsigned int amount)
         this->set_hp(0);
     else
         this->set_hp(get_hp() - amount);
-    std::cout << "ScavTrap <" << get_name() <<"> takes <" 
-    << amount << "> points of damage!" << std::endl;
+    std::cout << "ScavTrap " << get_name() <<" takes " 
+    << amount << " points of damage!" << std::endl;
 }
 
 void ScavTrap::beRepaired(unsigned int amount)
 {
     if (get_ep() == 0 || get_hp() == 0)
     {
-        std::cout << "ScavTrap <" << get_name() 
-        << "> cannot be repaired!" << std::endl;
+        std::cout << "ScavTrap " << get_name() 
+        << " cannot be repaired!" << std::endl;
         return;
     }
 
     this->set_ep(get_ep() - 1);
     this->set_hp(get_hp() + amount);
 
-    std::cout << "ScavTrap <" << get_name() 
-    << "> is repaired for <" << amount << "> hit points!"
+    std::cout << "ScavTrap " << get_name() 
+    << " is repaired for " << amount << " hit points!"
     << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap <" << get_name() << "> is now in Gate keeper mode!" << std::endl;
+    std::cout << "ScavTrap " << get_name() << " is now in Gate keeper mode!" << std::endl;
 }
 
 //Getters and Setters
