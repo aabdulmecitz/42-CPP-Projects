@@ -44,8 +44,8 @@ int main()
     
     std::cout << "\nTesting DiamondTrap abilities:" << std::endl;
     diamond.attack("Enemy");
-    diamond.takeDamage(20);        // ClapTrap:: kaldır
-    diamond.beRepaired(10);        // ClapTrap:: kaldır
+    diamond.takeDamage(20);
+    diamond.beRepaired(10);
     diamond.guardGate();
     diamond.highFivesGuys();
     diamond.whoAmI();
