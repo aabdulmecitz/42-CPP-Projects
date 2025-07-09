@@ -31,3 +31,53 @@ void DiamondTrap::whoAmI(void)
     std::cout << "DiamondTrap name: " << this->_name << std::endl;
     std::cout << "ClapTrap name: " << ClapTrap::_name << std::endl;
 }
+
+std::string DiamondTrap::get_name(void)
+{
+    return this->_name;
+}
+
+void DiamondTrap::set_name(std::string name)
+{
+    this->_name = name;
+}
+
+int DiamondTrap::get_hp(void)
+{
+    return this->hp;
+}
+
+void DiamondTrap::set_hp(int hpoints)
+{
+    this->hp = hpoints;
+}
+
+int DiamondTrap::get_ep(void)
+{
+    return this->ep;
+}
+
+void DiamondTrap::set_ep(int energy_points)
+{
+    this->ep = energy_points;
+}
+
+int DiamondTrap::get_attack_d(void)
+{
+    return this->attack_damage;
+}
+
+void DiamondTrap::set_attack_d(int attack_damage)
+{
+    this->attack_damage = attack_damage;
+}
+
+void DiamondTrap::takeDamage(unsigned int amount)
+{
+    ScavTrap::takeDamage(amount);
+}
+
+void DiamondTrap::beRepaired(unsigned int amount)
+{
+    FragTrap::beRepaired(amount);
+}
