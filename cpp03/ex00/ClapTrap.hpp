@@ -1,12 +1,15 @@
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
+
 #include <iostream>
 
 class ClapTrap
 {
 private:
     std::string _name;
-    int hit_p = 10;
-    int enrg_p = 10;
-    int attck_damage = 0;
+    int hp = 10;
+    int ep = 10;
+    int attack_damage = 0;
 public:
     ClapTrap();
     ClapTrap(std::string name);
@@ -19,15 +22,17 @@ public:
     std::string get_name(void);
     void set_name(std::string name);
 
-    int get_hit_p(void);
-    void set_hit_p(int hit_points);
+    int get_hp(void);
+    void set_hp(int hpoints);
 
-    int get_enrg_p(void);
-    void set_enrg_p(int energy_points);
+    int get_ep(void);
+    void set_ep(int energy_points);
 
     int get_attack_d(void);
     void set_attack_d(int attack_damage);
 
 
 };
+
+#endif
 
