@@ -1,11 +1,11 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void)
+ScavTrap::ScavTrap(void) : ClapTrap("Default")
 {
     std::cout << "Constructor has called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : _name(name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "Constructor has called" << std::endl;
 }
@@ -63,6 +63,11 @@ void ScavTrap::beRepaired(unsigned int amount)
     std::cout << "ScavTrap <" << get_name() 
     << "> is repaired for <" << amount << "> hit points!"
     << std::endl;
+}
+
+void ScavTrap::guardGate()
+{
+    std::cout << "ScavTrap <" << get_name() << "> is now in Gate keeper mode!" << std::endl;
 }
 
 //Getters and Setters
