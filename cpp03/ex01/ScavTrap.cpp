@@ -2,31 +2,37 @@
 
 ScavTrap::ScavTrap(void) : ClapTrap("Default")
 {
-    std::cout << "Constructor has called" << std::endl;
+    this->hp = 100;
+    this->ep = 50;
+    this->attack_damage = 20;
+    std::cout << "ScavTrap constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-    std::cout << "Constructor has called" << std::endl;
+    this->hp = 100;
+    this->ep = 50;
+    this->attack_damage = 20;
+    std::cout << "ScavTrap constructor called" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Destructor has called" << std::endl;
+    std::cout << "ScavTrap destructor called" << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
     if (get_ep() == 0 || get_hp() == 0)
     {
-        std::cout << "You cannot attack because you don't have any ";
+        std::cout << "ScavTrap " << get_name() << " cannot attack because it has no ";
         if (get_ep() == 0 && get_hp() == 0)
-            std::cout << "Energy Points and Hit Points";
+            std::cout << "energy points and hit points";
         else if (get_ep() == 0)
-            std::cout << "Energy Points";
+            std::cout << "energy points";
         else
-            std::cout << "Hit Points";
-        std::cout << "." << std::endl;
+            std::cout << "hit points";
+        std::cout << "!" << std::endl;
         return;
     }
     
@@ -40,11 +46,11 @@ void ScavTrap::attack(const std::string& target)
 
 void ScavTrap::takeDamage(unsigned int amount)
 {
-    if (amount >= get_hp())
+    if (amount >= (unsigned int)get_hp())
         this->set_hp(0);
     else
         this->set_hp(get_hp() - amount);
-    std::cout << "ScavTrap " << get_name() <<" takes " 
+    std::cout << "ScavTrap " << get_name() << " takes " 
     << amount << " points of damage!" << std::endl;
 }
 
