@@ -1,18 +1,20 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void)
+ClapTrap::ClapTrap(void) 
+    : hp(10), ep(10), attack_damage(0)
 {
-    std::cout << "ClapTrap constructor called" << std::endl;
+    std::cout << "Constructor has called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ClapTrap::ClapTrap(std::string name) 
+    : _name(name), hp(10), ep(10), attack_damage(0)
 {
-    std::cout << "ClapTrap constructor called" << std::endl;
+    std::cout << "Constructor has called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap destructor called" << std::endl;
+    std::cout << "Destructor has called" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -40,11 +42,11 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (amount >= (unsigned int)get_hp())
+    if ((int)amount >= get_hp())
         this->set_hp(0);
     else
         this->set_hp(get_hp() - amount);
-    std::cout << "ClapTrap " << get_name() << " takes " 
+    std::cout << "ClapTrap " << get_name() <<" takes " 
     << amount << " points of damage!" << std::endl;
 }
 
