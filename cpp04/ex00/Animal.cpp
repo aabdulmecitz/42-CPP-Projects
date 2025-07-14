@@ -1,6 +1,6 @@
 #include "Animal.hpp"
 
-Animal::Animal(void) 
+Animal::Animal(void) : _type("Animal")
 {
     std::cout << "Constructor has called" << std::endl;
 }
@@ -24,18 +24,23 @@ Animal &Animal::operator=(const Animal &other) {
     return *this;
 }
 
-std::string Animal::get_type(void) const
+std::string Animal::getType(void) const
 {
     return this->_type;
 }
 
-void Animal::set_type(std::string type)
+void Animal::setType(std::string type)
 {
-    this->set_type(type);
+    this->_type = type;
 }
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal)
 {
-    os << "Animal type: " << animal.get_type();
+    os << "Animal type: " << animal.getType();
     return os;
+}
+
+void Animal::makeSound() const
+{
+    std::cout << "Animal sound!" << std::endl;
 }

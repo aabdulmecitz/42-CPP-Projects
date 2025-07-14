@@ -14,8 +14,10 @@ public:
     Cat(const Cat& other);
     Cat& operator=(const Cat& other);
 
-    std::string get_type(void);
-    void set_type(std::string type);
+    std::string getType(void) const;
+    void setType(std::string type);
+    void makeSound() const;
+
 };
 
 #endif

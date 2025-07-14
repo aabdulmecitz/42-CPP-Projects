@@ -5,7 +5,7 @@ RESET = \033[0m
 
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS =	main.cpp Animal.cpp
+SRCS =	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -22,9 +22,8 @@ fclean: clean
 	rm -f $(NAME)
 
 run: re
-	@$(CC) $(CXXFLAGS) -o $(NAME) $(OBJS)
-	@rm -rf $(OBJS)
 	@echo "$(CYAN)Result...$(RESET)"
 	@./$(NAME)
+	@rm -rf $(OBJS)
 
 .PHONY: all clean re fclean run
