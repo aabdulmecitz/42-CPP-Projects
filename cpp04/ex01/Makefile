@@ -5,7 +5,7 @@ RESET = \033[0m
 
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS =	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp Brain.cpp
+SRCS =	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp Brain.cpp WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
