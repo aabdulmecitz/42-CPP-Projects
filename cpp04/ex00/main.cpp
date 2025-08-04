@@ -15,9 +15,9 @@ int main()
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     
-    i->makeSound(); // Will call Cat::makeSound() - CORRECT
-    j->makeSound(); // Will call Dog::makeSound() - CORRECT
-    meta->makeSound(); // Will call Animal::makeSound() - CORRECT
+    i->makeSound();
+    j->makeSound();
+    meta->makeSound();
     
     delete meta;
     delete j;
@@ -25,16 +25,16 @@ int main()
 
     std::cout << "\n=== Testing WRONG non-virtual behavior ===" << std::endl;
     const WrongAnimal* wrong = new WrongAnimal();
-    const WrongAnimal* wrongCat = new WrongCat(); // This is the key test!
+    const WrongAnimal* wrongCat = new WrongCat();
     WrongCat* directWrongCat = new WrongCat();
     
     std::cout << wrong->getType() << " " << std::endl;
     std::cout << wrongCat->getType() << " " << std::endl;
     std::cout << directWrongCat->getType() << " " << std::endl;
     
-    wrong->makeSound(); // Will call WrongAnimal::makeSound()
-    wrongCat->makeSound(); // Will call WrongAnimal::makeSound() - WRONG! Should be WrongCat
-    directWrongCat->makeSound(); // Will call WrongCat::makeSound() - Only when used directly
+    wrong->makeSound();
+    wrongCat->makeSound();
+    directWrongCat->makeSound();
     
     delete wrong;
     delete wrongCat;

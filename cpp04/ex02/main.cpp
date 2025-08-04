@@ -9,7 +9,7 @@ int main()
     std::cout << "--- Testing Abstract Animal Class ---\n";
     
     // This would cause compilation error - Animal is abstract
-    // const Animal* meta = new Animal(); // ERROR!
+    // const Animal* meta = new Animal();
     
     const Animal* j = new Dog();
     const Animal* i = new Cat();
@@ -25,16 +25,16 @@ int main()
 
     std::cout << "\n--- Testing WRONG non-virtual behavior ---\n";
     const WrongAnimal* wrong = new WrongAnimal();
-    const WrongAnimal* wrongCat = new WrongCat(); // This is the key test!
+    const WrongAnimal* wrongCat = new WrongCat();
     WrongCat* directWrongCat = new WrongCat();
     
     std::cout << wrong->getType() << " " << std::endl;
     std::cout << wrongCat->getType() << " " << std::endl;
     std::cout << directWrongCat->getType() << " " << std::endl;
     
-    wrong->makeSound(); // Will call WrongAnimal::makeSound()
-    wrongCat->makeSound(); // Will call WrongAnimal::makeSound() - WRONG! Should be WrongCat
-    directWrongCat->makeSound(); // Will call WrongCat::makeSound() - Only when used directly
+    wrong->makeSound();
+    wrongCat->makeSound();
+    directWrongCat->makeSound();
     
     delete wrong;
     delete wrongCat;
