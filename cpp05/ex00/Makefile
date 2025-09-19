@@ -1,11 +1,11 @@
-NAME = animal
+NAME = bureaucrat
 
 CYAN = \033[1;36m
 RESET = \033[0m
 
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS =	main.cpp Bureaucrat.cpp main.cpp
+SRCS =	main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
