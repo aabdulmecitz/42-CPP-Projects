@@ -11,7 +11,7 @@ private:
     const std::string   _name;
     const int           _signGrade;
     const int           _execGrade;
-    bool                _isSigned = false;
+    bool                _isSigned;
 
 public:
     Form(const std::string& name, int signGrade, int execGrade, bool isSigned);
@@ -21,6 +21,8 @@ public:
 
     const std::string& getName() const;
     bool getIsSigned() const;
+    int getSignGrade() const;
+    int getExecGrade() const;
 
     void beSigned(const Bureaucrat& bureaucrat);
 

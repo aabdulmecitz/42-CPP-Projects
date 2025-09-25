@@ -22,9 +22,7 @@ Form& Form::operator=(const Form& other)
 {
     if (this != &other)
     {
-        // _name is const, so we can only assign _signGrade, _execGrade, and _isSigned
-        _signGrade; = other._signGrade;
-        _execGrade = other._execGrade;
+        // _name, _signGrade, and _execGrade are likely const and cannot be assigned
         _isSigned = other._isSigned;
     }
     return *this;
@@ -35,33 +33,31 @@ const std::string &Form::getName() const
 	return _name;
 }
 
-int Form::getGrade() const
+bool Form::getIsSigned() const
 {
-	return _grade;
+    return _isSigned;
 }
 
-void Form::incrementGrade()
+int Form::getSignGrade() const
 {
-    _grade--;
-    if (_grade < 1)
-    {
-        throw Form::GradeTooHighException();
-    }
-    
+	return _signGrade;
 }
 
-void Form::decrementGrade()
+int Form::getExecGrade() const
 {
-    _grade++;
-    if (_grade > 150)
-    {
-        throw Form::GradeTooLowException();
-    }
+	return _execGrade;
+}
+
+void Form::beSigned(const Bureaucrat& bureaucrat)
+{
+	if (bureaucrat.getGrade() > _signGrade)
+		throw GradeTooLowException();
+	_isSigned = true;
 }
 
 std::ostream &operator<<(std::ostream &os, const Form &obj)
 {
-    os << obj.getName() << ", Form grade " << obj.getGrade() << ".";
+    os << obj.getName() << ", Form is " << (obj.getIsSigned() ? "signed" : "not signed") << ".";
     return os;
 }
 
