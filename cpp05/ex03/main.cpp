@@ -1,52 +1,27 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
 int main()
 {
-    std::cout << "================== TEST 1: ShrubberyCreationForm ==================" << std::endl;
+    std::cout << "================ TEST 1: Intern creates ShrubberyCreationForm ================" << std::endl;
     try
     {
-        Bureaucrat alice("Alice", 140);
-        ShrubberyCreationForm shrubbery("home");
+        Intern someIntern;
+        AForm* form = someIntern.makeForm("shrubbery creation", "home");
         
-        std::cout << "Form: " << shrubbery << std::endl;
-        std::cout << "Bureaucrat: " << alice << std::endl;
-        
-        std::cout << "\nAttempting to sign..." << std::endl;
-        alice.signForm(shrubbery);
-        
-        std::cout << "After signing: " << shrubbery << std::endl;
-        
-        std::cout << "\nAttempting to execute..." << std::endl;
-        alice.executeForm(shrubbery);
-    }
-    catch (const std::exception& e)
-    {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n================== TEST 2: RobotomyRequestForm ==================" << std::endl;
-    try
-    {
-        Bureaucrat bob("Bob", 40);
-        RobotomyRequestForm robotomy("42 Student");
-        
-        std::cout << "Form: " << robotomy << std::endl;
-        std::cout << "Bureaucrat: " << bob << std::endl;
-        
-        std::cout << "\nAttempting to sign..." << std::endl;
-        bob.signForm(robotomy);
-        
-        std::cout << "After signing: " << robotomy << std::endl;
-        
-        std::cout << "\nAttempting to execute (multiple times to see randomness)..." << std::endl;
-        for (int i = 0; i < 4; i++)
+        if (form)
         {
-            std::cout << "Attempt " << (i + 1) << ": ";
-            bob.executeForm(robotomy);
+            std::cout << "Created form: " << form->getName() << std::endl;
+            
+            Bureaucrat alice("Alice", 140);
+            alice.signForm(*form);
+            alice.executeForm(*form);
+            
+            delete form;
         }
     }
     catch (const std::exception& e)
@@ -54,130 +29,161 @@ int main()
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 3: PresidentialPardonForm ==================" << std::endl;
+    std::cout << "\n================ TEST 2: Intern creates RobotomyRequestForm ================" << std::endl;
     try
     {
-        Bureaucrat charlie("Charlie", 3);
-        PresidentialPardonForm pardon("a guilty person");
+        Intern someIntern;
+        AForm* form = someIntern.makeForm("robotomy request", "Bender");
         
-        std::cout << "Form: " << pardon << std::endl;
-        std::cout << "Bureaucrat: " << charlie << std::endl;
-        
-        std::cout << "\nAttempting to sign..." << std::endl;
-        charlie.signForm(pardon);
-        
-        std::cout << "After signing: " << pardon << std::endl;
-        
-        std::cout << "\nAttempting to execute..." << std::endl;
-        charlie.executeForm(pardon);
+        if (form)
+        {
+            std::cout << "Created form: " << form->getName() << std::endl;
+            
+            Bureaucrat bob("Bob", 40);
+            bob.signForm(*form);
+            bob.executeForm(*form);
+            bob.executeForm(*form);
+            
+            delete form;
+        }
     }
     catch (const std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 4: Execute without signing ==================" << std::endl;
+    std::cout << "\n================ TEST 3: Intern creates PresidentialPardonForm ================" << std::endl;
     try
     {
-        Bureaucrat diana("Diana", 1);
-        ShrubberyCreationForm shrubbery2("garden");
+        Intern someIntern;
+        AForm* form = someIntern.makeForm("presidential pardon", "a criminal");
         
-        std::cout << "Form: " << shrubbery2 << std::endl;
-        std::cout << "Bureaucrat: " << diana << std::endl;
-        
-        std::cout << "\nAttempting to execute WITHOUT signing..." << std::endl;
-        diana.executeForm(shrubbery2);
+        if (form)
+        {
+            std::cout << "Created form: " << form->getName() << std::endl;
+            
+            Bureaucrat charlie("Charlie", 3);
+            charlie.signForm(*form);
+            charlie.executeForm(*form);
+            
+            delete form;
+        }
     }
     catch (const std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 5: Grade too low to sign ==================" << std::endl;
+    std::cout << "\n================ TEST 4: Intern invalid form name ================" << std::endl;
     try
     {
-        Bureaucrat eve("Eve", 150);
-        RobotomyRequestForm robotomy2("Intern");
+        Intern someIntern;
+        AForm* form = someIntern.makeForm("invalid form", "target");
         
-        std::cout << "Form: " << robotomy2 << std::endl;
-        std::cout << "Bureaucrat: " << eve << std::endl;
+        if (form)
+        {
+            delete form;
+        }
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+
+    std::cout << "\n================ TEST 5: Multiple interns creating forms ================" << std::endl;
+    try
+    {
+        Intern intern1;
+        Intern intern2;
+        Intern intern3;
         
-        std::cout << "\nAttempting to sign (insufficient grade)..." << std::endl;
-        eve.signForm(robotomy2);
+        AForm* form1 = intern1.makeForm("shrubbery creation", "garden");
+        AForm* form2 = intern2.makeForm("robotomy request", "Subject");
+        AForm* form3 = intern3.makeForm("presidential pardon", "prisoner");
         
-        std::cout << "After failed sign: " << robotomy2 << std::endl;
+        if (form1 && form2 && form3)
+        {
+            Bureaucrat admin("Admin", 1);
+            
+            admin.signForm(*form1);
+            admin.executeForm(*form1);
+            
+            admin.signForm(*form2);
+            admin.executeForm(*form2);
+            
+            admin.signForm(*form3);
+            admin.executeForm(*form3);
+            
+            delete form1;
+            delete form2;
+            delete form3;
+        }
     }
     catch (const std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 6: Grade too low to execute ==================" << std::endl;
+    std::cout << "\n================ TEST 6: Case sensitivity test ================" << std::endl;
     try
     {
-        Bureaucrat frank("Frank", 100);
-        RobotomyRequestForm robotomy3("Subject");
+        Intern someIntern;
+        // Try with incorrect case
+        AForm* form = someIntern.makeForm("Shrubbery Creation", "target");
+        if (form)
+            delete form;
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Exception caught (expected): " << e.what() << std::endl;
+    }
+
+    std::cout << "\n================ TEST 7: Direct form creation vs Intern creation ================" << std::endl;
+    try
+    {
+        Intern someIntern;
+        Bureaucrat boss("Boss", 1);
         
-        std::cout << "Form: " << robotomy3 << std::endl;
-        std::cout << "Bureaucrat: " << frank << std::endl;
+        // Create through intern
+        AForm* internForm = someIntern.makeForm("robotomy request", "Subject1");
         
-        std::cout << "\nSigning with a higher grade bureaucrat..." << std::endl;
-        Bureaucrat grace("Grace", 50);
-        grace.signForm(robotomy3);
+        // Create directly
+        RobotomyRequestForm directForm("Subject2");
         
-        std::cout << "After signing: " << robotomy3 << std::endl;
+        std::cout << "Both forms created successfully" << std::endl;
         
-        std::cout << "\nAttempting to execute with lower grade bureaucrat..." << std::endl;
-        frank.executeForm(robotomy3);
+        boss.signForm(*internForm);
+        boss.signForm(directForm);
+        
+        boss.executeForm(*internForm);
+        boss.executeForm(directForm);
+        
+        delete internForm;
     }
     catch (const std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 7: Presidential Pardon (insufficient grade) ==================" << std::endl;
+    std::cout << "\n================ TEST 8: Execute without signing (via Intern) ================" << std::endl;
     try
     {
-        Bureaucrat henry("Henry", 10);
-        PresidentialPardonForm pardon2("criminal");
+        Intern someIntern;
+        AForm* form = someIntern.makeForm("shrubbery creation", "yard");
         
-        std::cout << "Form: " << pardon2 << std::endl;
-        std::cout << "Bureaucrat: " << henry << std::endl;
-        
-        std::cout << "\nAttempting to sign with insufficient grade..." << std::endl;
-        henry.signForm(pardon2);
+        if (form)
+        {
+            Bureaucrat worker("Worker", 200);  // Grade too low
+            worker.executeForm(*form);
+            
+            delete form;
+        }
     }
     catch (const std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n================== TEST 8: All three forms with grade 1 bureaucrat ==================" << std::endl;
-    try
-    {
-        Bureaucrat admin("Admin", 1);  // Highest grade
-        
-        std::cout << "Bureaucrat: " << admin << std::endl;
-        
-        std::cout << "\n--- Shrubbery Form ---" << std::endl;
-        ShrubberyCreationForm shrub("park");
-        admin.signForm(shrub);
-        admin.executeForm(shrub);
-        
-        std::cout << "\n--- Robotomy Form ---" << std::endl;
-        RobotomyRequestForm robot("Bender");
-        admin.signForm(robot);
-        admin.executeForm(robot);
-        
-        std::cout << "\n--- Presidential Form ---" << std::endl;
-        PresidentialPardonForm pres("Zoidberg");
-        admin.signForm(pres);
-        admin.executeForm(pres);
-    }
-    catch (const std::exception& e)
-    {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
+    std::cout << "\n================ All tests completed ================" << std::endl;
     return 0;
 }
