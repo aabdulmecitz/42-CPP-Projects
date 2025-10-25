@@ -19,7 +19,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) garden_shrubbery
 
 run: re
 	@echo "$(CYAN)Result...$(RESET)"
