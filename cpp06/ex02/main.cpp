@@ -1,21 +1,13 @@
-#include "./ScalarConverter.hpp"
+#include "./Base.hpp"
 
-int main(int argc, char** argv)
+int main()
 {
-    if (argc != 2)
-    {
-        std::cerr << "Usage: ./convert <literal>" << std::endl;
-        return 1;
-    }
+    Base *ptr = generate();
+    std::cout << std::endl;
 
-    try
-    {
-        ScalarConverter::convert(std::string(argv[1]));
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
-    }
+    identify(ptr);
+    identify(*ptr);
+
+    delete ptr;
     return 0;
 }
