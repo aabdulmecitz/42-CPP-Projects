@@ -19,7 +19,6 @@ Form& Form::operator=(const Form& other)
 {
     if (this != &other)
     {
-        // _name, _grade_to_sign, and _grade_to_execute are const, so only assign _isSigned
         _isSigned = other._isSigned;
     }
     return *this;
