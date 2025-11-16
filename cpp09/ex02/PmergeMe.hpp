@@ -11,5 +11,8 @@
 # include <climits>
 # include <cstdlib>
 
+std::vector<int>    init_vector(int argc, char *argv[]);
+void                print_vector(const std::vector<int>& vec);
+
 
 #endif
