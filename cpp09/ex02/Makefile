@@ -1,4 +1,4 @@
-NAME = pmergeMe
+NAME = PmergeMe
 
 CYAN = \033[1;36m
 RESET = \033[0m
