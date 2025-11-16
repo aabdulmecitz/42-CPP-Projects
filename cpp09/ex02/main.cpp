@@ -15,7 +15,6 @@ void print_datas(std::vector<int>& numbers)
 {
     const size_t MAX_DISPLAY = 10;
     
-    // Display "Before" line
     std::cout << COLOR_CYAN << COLOR_BOLD << "Before: " << COLOR_RESET;
     for (size_t i = 0; i < numbers.size(); i++)
     {
@@ -31,13 +30,11 @@ void print_datas(std::vector<int>& numbers)
     }
     std::cout << std::endl;
     
-    // Vector: measure total time including data management and sorting
     clock_t start_vector = clock();
     std::vector<int> sorted_vector = numbers;
     std::sort(sorted_vector.begin(), sorted_vector.end());
     clock_t end_vector = clock();
     
-    // Display "After" line
     std::cout << COLOR_GREEN << COLOR_BOLD << "After: " << COLOR_RESET;
     for (size_t i = 0; i < sorted_vector.size(); i++)
     {
@@ -52,22 +49,17 @@ void print_datas(std::vector<int>& numbers)
         }
     }
     std::cout << std::endl;
-    
-    // Calculate total time for vector (data management + sorting) in microseconds
+
     double time_vector = static_cast<double>(end_vector - start_vector) / CLOCKS_PER_SEC * 1000000;
-    
     std::cout << std::fixed << std::setprecision(5);
     std::cout << COLOR_BLUE << "Time to process a range of " << sorted_vector.size() 
               << " elements with " << COLOR_BOLD << "std::vector" << COLOR_RESET << COLOR_BLUE 
               << " : " << COLOR_YELLOW << time_vector << COLOR_BLUE << " us" << COLOR_RESET << std::endl;
-    
-    // Deque: measure total time including data management and sorting
-    clock_t start_deque = clock();
+        clock_t start_deque = clock();
     std::deque<int> sorted_deque(numbers.begin(), numbers.end());
     std::sort(sorted_deque.begin(), sorted_deque.end());
     clock_t end_deque = clock();
-    
-    // Calculate total time for deque (data management + sorting) in microseconds
+
     double time_deque = static_cast<double>(end_deque - start_deque) / CLOCKS_PER_SEC * 1000000;
     std::cout << COLOR_BLUE << "Time to process a range of " << sorted_deque.size() 
               << " elements with " << COLOR_BOLD << "std::deque" << COLOR_RESET << COLOR_BLUE 
