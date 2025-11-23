@@ -18,5 +18,12 @@ std::vector<int>    init_vector(int argc, char *argv[]);
 void                print_vector(const std::vector<int>& vec);
 void                print_datas(std::vector<int>& numbers);
 
+template <typename T>
+void merge_insert_sort(T& container)
+{
+    
+
+}
+
 
 #endif

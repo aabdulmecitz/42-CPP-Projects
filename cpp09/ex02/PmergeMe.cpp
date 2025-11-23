@@ -53,4 +53,3 @@ void print_vector(const std::vector<int>& vec)
     }
     std::cout << std::endl;
 }
-

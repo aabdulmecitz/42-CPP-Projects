@@ -57,7 +57,7 @@ void print_datas(std::vector<int>& numbers)
               << " : " << COLOR_YELLOW << time_vector << COLOR_BLUE << " us" << COLOR_RESET << std::endl;
         clock_t start_deque = clock();
     std::deque<int> sorted_deque(numbers.begin(), numbers.end());
-    std::sort(sorted_deque.begin(), sorted_deque.end());
+    merge_insert_sort(sorted_deque);
     clock_t end_deque = clock();
 
     double time_deque = static_cast<double>(end_deque - start_deque) / CLOCKS_PER_SEC * 1000000;
