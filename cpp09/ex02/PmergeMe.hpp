@@ -21,8 +21,18 @@ void                print_datas(std::vector<int>& numbers);
 template <typename T>
 void merge_insert_sort(T& container)
 {
-    
-
+    int n = container.size();
+    for (int i = 0; i < n; i++)
+    {
+        int num = container[i];
+        int j = i-1;
+        while (j >= 0 && container[j] > num)
+        {
+            container[j + 1] = container[j];
+            j--;
+        }
+        container[j + 1] = num;
+    }
 }
 
 

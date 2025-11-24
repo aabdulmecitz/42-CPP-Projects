@@ -13,6 +13,8 @@
 
 void print_datas(std::vector<int>& numbers)
 {
+    if (numbers.empty())
+        return;
     const size_t MAX_DISPLAY = 10;
     
     std::cout << COLOR_CYAN << COLOR_BOLD << "Before: " << COLOR_RESET;
