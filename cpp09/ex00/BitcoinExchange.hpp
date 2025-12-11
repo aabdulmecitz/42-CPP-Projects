@@ -13,16 +13,14 @@ class BitcoinExchange
 {
 private:
     std::map<std::string, float> _data;
-    
-    bool isValidDate(const std::string& date);
-    bool isValidValue(const std::string& valueStr, float& value);
-    
 public:
     BitcoinExchange();
     BitcoinExchange(const BitcoinExchange& other);
     ~BitcoinExchange();
     BitcoinExchange& operator=(const BitcoinExchange& other);
     
+    bool isValidDate(const std::string& date);
+    bool isValidValue(const std::string& valueStr, float& value);
     void loadDatabase(const std::string& filename);
     float getExchangeRate(const std::string& date) const;
     
