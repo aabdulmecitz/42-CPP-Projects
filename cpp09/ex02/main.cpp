@@ -34,7 +34,7 @@ void print_datas(std::vector<int>& numbers)
     
     clock_t start_vector = clock();
     std::vector<int> sorted_vector = numbers;
-    std::sort(sorted_vector.begin(), sorted_vector.end());
+    merge_insert_sort(sorted_vector);
     clock_t end_vector = clock();
     
     std::cout << COLOR_GREEN << COLOR_BOLD << "After: " << COLOR_RESET;
