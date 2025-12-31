@@ -144,26 +144,26 @@ std::vector<size_t> recursive_sort(const T& data, const std::vector<size_t>& cha
 }
 
 template <typename T>
-void merge_insert_sort(T& T)
+void merge_insert_sort(T& container)
 {
-    if (T.size() < 2)
+    if (container.size() < 2)
         return;
     
-    std::vector<size_t> chain(T.size());
+    std::vector<size_t> chain(container.size());
     for (size_t i = 0; i < chain.size(); ++i)
         chain[i] = i;
         
-    std::vector<size_t> sorted_chain = recursive_sort(T, chain);
+    std::vector<size_t> sorted_chain = recursive_sort(container, chain);
     
     T result;
-    // result.reserve(T.size()); 
+    // result.reserve(container.size()); 
     // Manual loop for push_back standard compliance
     for (size_t i = 0; i < sorted_chain.size(); ++i)
     {
-        result.push_back(T[sorted_chain[i]]);
+        result.push_back(container[sorted_chain[i]]);
     }
     
-    T = result;
+    container = result;
 }
 
 #endif
