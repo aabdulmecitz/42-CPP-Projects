@@ -36,11 +36,11 @@ std::vector<int>    init_vector(int argc, char *argv[]);
 void                print_vector(const std::vector<int>& vec);
 void                print_datas(std::vector<int>& numbers);
 
-template <typename Container>
+template <typename T>
 struct CompareData
 {
-    const Container& data;
-    CompareData(const Container& d) : data(d) {}
+    const T& data;
+    CompareData(const T& d) : data(d) {}
 
     bool operator()(size_t val_idx, size_t element_idx) const
     {
@@ -48,42 +48,42 @@ struct CompareData
     }
 };
 
-template <typename Container>
-std::vector<size_t> recursive_sort(const Container& data, const std::vector<size_t>& indices)
+template <typename T>
+std::vector<size_t> recursive_sort(const T& data, const std::vector<size_t>& chain)
 {
-    if (indices.size() < 2)
-        return indices;
+    if (chain.size() < 2)
+        return chain;
 
-    std::vector<size_t> main_chain_indices;
+    std::vector<size_t> main_chain;
     std::vector<size_t> my_pairs(data.size(), static_cast<size_t>(-1)); 
     
     size_t straggler = static_cast<size_t>(-1);
-    bool has_straggler = (indices.size() % 2 != 0);
+    bool has_straggler = (chain.size() % 2 != 0);
 
-    for (size_t i = 0; i < indices.size() - (has_straggler ? 1 : 0); i += 2)
+    for (size_t i = 0; i < chain.size() - (has_straggler ? 1 : 0); i += 2)
     {
-        size_t idx1 = indices[i];
-        size_t idx2 = indices[i + 1];
+        size_t idx1 = chain[i];
+        size_t idx2 = chain[i + 1];
 
         if (data[idx1] > data[idx2])
         {
-            main_chain_indices.push_back(idx1);
+            main_chain.push_back(idx1);
             my_pairs[idx1] = idx2;
         }
         else
         {
-            main_chain_indices.push_back(idx2);
+            main_chain.push_back(idx2);
             my_pairs[idx2] = idx1;
         }
     }
     
     if (has_straggler)
-        straggler = indices.back();
+        straggler = chain.back();
 
-    std::vector<size_t> sorted_main = recursive_sort(data, main_chain_indices);
+    std::vector<size_t> sorted_main = recursive_sort(data, main_chain);
 
     std::vector<size_t> S;
-    S.reserve(indices.size());
+    S.reserve(chain.size());
 
     if (!sorted_main.empty())
     {
@@ -107,7 +107,7 @@ std::vector<size_t> recursive_sort(const Container& data, const std::vector<size
     
     size_t last_processed_idx = 0; 
     
-    CompareData<Container> comp(data);
+    CompareData<T> comp(data);
 
     for (size_t k = 0; k < jacob.size(); ++k)
     {
@@ -144,26 +144,26 @@ std::vector<size_t> recursive_sort(const Container& data, const std::vector<size
 }
 
 template <typename T>
-void merge_insert_sort(T& container)
+void merge_insert_sort(T& T)
 {
-    if (container.size() < 2)
+    if (T.size() < 2)
         return;
     
-    std::vector<size_t> indices(container.size());
-    for (size_t i = 0; i < indices.size(); ++i)
-        indices[i] = i;
+    std::vector<size_t> chain(T.size());
+    for (size_t i = 0; i < chain.size(); ++i)
+        chain[i] = i;
         
-    std::vector<size_t> sorted_indices = recursive_sort(container, indices);
+    std::vector<size_t> sorted_chain = recursive_sort(T, chain);
     
     T result;
-    // result.reserve(container.size()); 
+    // result.reserve(T.size()); 
     // Manual loop for push_back standard compliance
-    for (size_t i = 0; i < sorted_indices.size(); ++i)
+    for (size_t i = 0; i < sorted_chain.size(); ++i)
     {
-        result.push_back(container[sorted_indices[i]]);
+        result.push_back(T[sorted_chain[i]]);
     }
     
-    container = result;
+    T = result;
 }
 
 #endif
